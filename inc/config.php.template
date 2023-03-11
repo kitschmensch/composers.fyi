@@ -1,0 +1,15 @@
+
+<?php
+if (PHP_VERSION_ID < 80000) {
+	die("Composer Timeline requires PHP 8.0 or later to function properly");
+}
+date_default_timezone_set('UTC');
+
+
+// MySQL details
+define('SQLHOST', 'localhost'); //The MySQL host ip/fqdn
+define('SQLLOGIN', 'composers'); //The MySQL login
+define('SQLPASS', 'password_here'); //The MySQL password
+define('SQLDB', 'composer_timeline'); //The MySQL database to use
+define('SQLPORT', 3306); //The MySQL port to connect on
+define('SQLSOCK', '/var/run/mysqld/mysqld.sock');

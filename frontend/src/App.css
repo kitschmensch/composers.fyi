@@ -1,0 +1,65 @@
+body {
+  font-family: 'Georgia', sans-serif;
+  font-size: 16px;
+  cursor: grab;
+  overflow: hidden;
+}
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #35434f;
+  z-index: -100;
+}
+
+.swipeBox {
+  background-color: aqua;
+  z-index: 200;
+  width: "100%";
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  background-color: #35434f;
+}
+
+ul {
+  margin: auto
+}
+
+li {
+  list-style-type: "𐫱";
+  padding: 10px;
+  font-size: smaller;
+}
+
+a {
+  color: #fff;
+}
+
+h3 {
+  font-weight: normal;
+}
+
+.fleuron {
+  margin: auto;
+  padding: .5rem;
+  left: 50%;
+}
