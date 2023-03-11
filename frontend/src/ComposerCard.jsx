@@ -38,7 +38,7 @@ const ComposerCard = ({ composer, x, index }) => {
     return (
       <div style={cardStyle()} className="composer-card">
         <h3>composers.fyi</h3>
-        <p>A journey through the history of Western&nbsp;Art&nbsp;Music.</p>
+        <p>A journey through the history of Western&nbsp;Art&nbsp;Music</p>
         <ul>
           <li>Turn up the volume to hear a sample piece from each composer.</li>
           <li>Swipe, tap, or click to navigate through the timeline.</li>

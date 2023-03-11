@@ -65,8 +65,8 @@ export default function App() {
       <div className="centered">{composerList}</div>
       <div className="header">
         composers.fyi |{" "}
-        <a href="https://www.github.com/kitschmensch">Source code</a> | Made by
-        Jake&nbsp;Mecham
+        <a href="https://github.com/kitschmensch/composers.fyi">Source code</a>{" "}
+        | Made&nbsp;by&nbsp;Jake&nbsp;Mecham
       </div>
     </div>
   );
