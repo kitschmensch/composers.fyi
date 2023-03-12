@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-export default function AudioClip({ playing, src }) {
+export default function AudioClip({ modalState, playing, src }) {
   const interval = 10;
   const volumeStep = 0.01;
   const audio = useRef(null);
@@ -20,7 +20,7 @@ export default function AudioClip({ playing, src }) {
 
   useEffect(() => {
     fade(ios);
-  }, [playing]);
+  }, [playing, modalState]);
 
   //Recursive function allows for smooth fade in/out even if the "playing" is changed rapidly.
   //Frustratingly, in iOS the audio element volume always returns 1, so we have to use muted instead.
