@@ -7,25 +7,30 @@ export default function AudioClip({ playing, src }) {
 
   //Using useRef to store the playing state gets around recursive setTimeout closures.
   const playingRef = useRef(playing);
+  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   playingRef.current = playing;
 
   //Equivalent to componentDidMount
   useEffect(() => {
     audio.current.volume = 0;
-    if (playing) {
-      audio.current.play();
+    if (ios) {
+      audio.current.muted = true;
     }
   }, []);
 
   useEffect(() => {
-    fade();
+    fade(ios);
   }, [playing]);
 
   //Recursive function allows for smooth fade in/out even if the "playing" is changed rapidly.
-  function fade() {
+  //Frustratingly, in iOS the audio element volume always returns 1, so we have to use muted instead.
+  function fade(ios = false) {
     if (playingRef.current) {
       if (audio.current.paused) {
         audio.current.play();
+      }
+      if (ios) {
+        audio.current.muted = false;
       }
       if (audio.current.volume < 1) {
         audio.current.volume =
@@ -33,6 +38,9 @@ export default function AudioClip({ playing, src }) {
         setTimeout(fade, interval);
       }
     } else {
+      if (ios) {
+        audio.current.muted = true;
+      }
       if (audio.current.volume > 0) {
         audio.current.volume =
           Math.round((audio.current.volume - volumeStep) * 100) / 100;
