@@ -2,7 +2,7 @@ import BaseUrl from "./BaseUrl.js";
 import AudioClip from "./AudioClip.jsx";
 import "./ComposerCard.css";
 
-const ComposerCard = ({ composer, x, index }) => {
+const ComposerCard = ({ modalState, composer, x, index }) => {
   //Styles
   const spacing = 20;
   const zoom = 6;
@@ -34,27 +34,9 @@ const ComposerCard = ({ composer, x, index }) => {
     return css;
   }
 
-  if (composer.name == "Title") {
-    return (
-      <div style={cardStyle()} className="composer-card">
-        <h3>composers.fyi</h3>
-        <p>A journey through the history of Western&nbsp;Art&nbsp;Music</p>
-        <ul>
-          <li>Turn up the volume to hear a sample piece from each composer.</li>
-          <li>Swipe, tap, or click to navigate through the timeline.</li>
-          <li>
-            Similar orchestral samples were chosen to make stylistic comparisons
-            easier.
-          </li>
-        </ul>
-        <p className="fleuron">❦</p>
-      </div>
-    );
-  }
   return (
     <div style={cardStyle()} className="composer-card">
       <h3>{composer.complete_name}</h3>
-
       <img
         src={`${BaseUrl}/static/img/${composer.name}.jpg`}
         alt={`Picture of ${composer.name}`}
@@ -66,6 +48,7 @@ const ComposerCard = ({ composer, x, index }) => {
       </p>
       <p></p>
       <AudioClip
+        modalState={modalState}
         playing={position == 0}
         src={`${BaseUrl}/static/audio/${composer.name}.mp3`}
       />

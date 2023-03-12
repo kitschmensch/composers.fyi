@@ -20,9 +20,3 @@ An interactive timeline of classical music composers built as a simple coding de
 - Vite is configured to output the results of `npm run build` to the root directory.
 - Apache serves the static index.html.
 - php handles REST API traffic and requests to the database.
-
-## To-do
-
-- Write proper installation guide.
-- Fix issues on iOS where taps are doubled and music overlaps.
-- Add composer biographies and stylistic notes.

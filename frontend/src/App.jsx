@@ -3,31 +3,41 @@ import { useSwipeable } from "react-swipeable";
 import "./App.css";
 import axios from "axios";
 import React from "react";
+import Modal from "./Modal";
 import ComposerCard from "./ComposerCard";
 import BaseUrl from "./BaseUrl";
 
 export default function App() {
   const [count, setCount] = useState(0);
   const [composers, setComposers] = useState([]);
+  let [modalState, setModalState] = useState(true);
 
   const swipeBox = {
     zIndex: 200,
-    width: "100%",
     position: "absolute",
-    height: "calc(100% - 4rem)",
-    top: "2rem",
-    left: 0,
+    color: "green",
+    height: "300px",
+    width: "300px",
+    padding: "1rem",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   };
 
   useEffect(() => {
     axios.get(`${BaseUrl}/index.php/composer/list`).then((response) => {
-      response.data.unshift({ name: "Title" });
       setComposers(response.data);
     });
   }, []);
 
   let composerList = composers.map((composer, index) => (
-    <ComposerCard composer={composer} index={index} x={count} key={index} />
+    <ComposerCard
+      modalState={modalState}
+      composer={composer}
+      index={index}
+      x={count}
+      key={index}
+    />
   ));
 
   function swipe(index) {
@@ -38,8 +48,11 @@ export default function App() {
     if (newCount > composerList.length - 1) {
       newCount = 0;
     }
-
     setCount((count) => newCount);
+  }
+
+  function dismissModal() {
+    setModalState(false);
   }
 
   const swipeSettings = useSwipeable({
@@ -47,7 +60,16 @@ export default function App() {
     onSwipedDown: () => swipe(1),
     onSwipedRight: () => swipe(-1),
     onSwipedUp: () => swipe(-1),
-    onTap: () => swipe(1),
+    onTap: (e) => {
+      if (e.event instanceof MouseEvent) {
+        if (e.event.shiftKey) {
+          swipe(-1);
+          return;
+        }
+        swipe(1);
+        return;
+      }
+    },
     swipeDuration: 500,
     preventScrollOnSwipe: true,
     trackMouse: true,
@@ -59,8 +81,11 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <div style={backgroundStyle} className="background" />
+    <div style={backgroundStyle} className="background App">
+      <div onClick={dismissModal}>
+        <Modal modalState={modalState} />
+      </div>
+
       <div {...swipeSettings} style={swipeBox}></div>
       <div className="centered">{composerList}</div>
       <div className="header">
