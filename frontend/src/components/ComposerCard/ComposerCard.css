@@ -1,0 +1,24 @@
+.composer-card {
+    border: 1px solid var(--border-color);
+    background-color: white;
+    filter: drop-shadow(1rem 1em 20px black);
+    padding: 1rem;
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--card-border-radius);
+}
+
+
+img {
+    border-radius: var(--card-border-radius);
+    border: 1px solid var(--border-color);
+    display: block;
+    margin: auto;
+}
+
+
+h3,
+p,
+.dates {
+    text-align: center;
+}
