@@ -1,1 +1,5 @@
 FallbackResource ./index.html
+
+<FilesMatch ".(ico|webp|mp3)$">
+  Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
